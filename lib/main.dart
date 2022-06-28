@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:disenos/screens/basic_desing.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      title: 'Material App', 
+      initialRoute: 'basic_design',
+      routes: {
+        'basic_design': ( _ ) => const BasicDesignScreen()
+      },
     );
   }
 }
+ 
