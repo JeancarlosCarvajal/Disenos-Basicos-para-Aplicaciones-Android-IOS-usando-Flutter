@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CardTable extends StatelessWidget {
@@ -50,26 +52,52 @@ class _SingleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(// le agrege el center para poderlo manejar con e with de otro modo no se podia
-      child: Container(
-        margin: const EdgeInsets.all(15),
-        height: 180,
-        width: 170,
-        decoration: BoxDecoration(
-          color: const Color.fromRGBO(62, 66, 107, 0.7),
-          borderRadius: BorderRadius.circular(20),
-        ), 
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              backgroundColor: color,
-              radius: 30,
-              child: Icon(icons, size: 35),
+    
+    return _CardBackground(
+      widget: Column( // esto es un metodo de la clase privada que cree _CardBackground
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            backgroundColor: color,
+            radius: 30,
+            child: Icon(icons, size: 35, color: Colors.white),
+          ),
+          const SizedBox(height: 10),
+          Text(text, style: TextStyle(color: color, fontSize: 18))
+        ],
+      )
+    );
+  }
+}
+
+class _CardBackground extends StatelessWidget {
+
+  final Widget widget;
+  const _CardBackground({
+    Key? key,
+    required this.widget
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(15), // coloque el margen aqui para que me pueda seccionar bien el blur y no se sobre salga
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20), // vuelvo a colorcar el border aqui porque se sobre sale, lo mismo pasa en CSS3 y HTML5
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Center(// le agrege el center para poderlo manejar con e with de otro modo no se podia
+            child: Container(
+              // margin: const EdgeInsets.all(15),
+              height: 180,
+              width: 170,
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(62, 66, 107, 0.7),
+                borderRadius: BorderRadius.circular(20),
+              ), 
+              child: widget,
             ),
-            const SizedBox(height: 10),
-            Text(text, style: TextStyle(color: Colors.blue, fontSize: 18),)
-          ],
+          ),
         ),
       ),
     );

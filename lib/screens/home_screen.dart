@@ -40,6 +40,8 @@ class _HomeBody extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(), // para que me pase las paginas moviendo el dedo a los lados de la pantalla
+        scrollDirection: Axis.vertical, // establece el scroll que sea vertical
         child: Column(
           children: [
             //titulos

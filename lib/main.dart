@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),// para colocar el fondo oscuro y que no se vea blur blanco debajo en el esmerilado
       title: 'Material App', 
       initialRoute: 'home_screen',
       routes: {
