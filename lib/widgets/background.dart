@@ -16,7 +16,7 @@ class Background extends StatelessWidget {
       ]
     )
   );
-
+ 
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,14 +24,19 @@ class Background extends StatelessWidget {
         // Purple Gradiente Background
         Container(  decoration: boxDecoration ),
 
-        //Pink box
-        _PinkBox(),
+        //Pink box, es como position relative o absolute en css3
+        Positioned(
+          top: -100,
+          left: -30,
+          child: _PinkBox()
+        ),
 
       ],
     );
   }
-}
  
+}
+
 class _PinkBox extends StatelessWidget {
    
   const _PinkBox({Key? key}) : super(key: key);
